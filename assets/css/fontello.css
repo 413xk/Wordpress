@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'fontello';
-  src: url('../fonts/fontello.eot?90631961');
+  src: url('../fonts/fontello.eot');
   src: url('../fonts/fontello.eot?90631961#iefix') format('embedded-opentype'),
        url('../fonts/fontello.woff2?90631961') format('woff2'),
        url('../fonts/fontello.woff?90631961') format('woff'),
@@ -54,7 +54,7 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-phone:before { content: '\e800'; } /* '' */
+.icon-l{ content: '\e800'; } /* '' */
 .icon-location-circled:before { content: '\e801'; } /* '' */
 .icon-mail:before { content: '\e802'; } /* '' */
 .icon-heart:before { content: '\e803'; } /* '' */

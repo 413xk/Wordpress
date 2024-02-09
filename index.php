@@ -24,80 +24,113 @@
                 <p class="block__text"><?= CFS()-> get('team_description') ?></p>
             </div>
             <div class="team__inner">
-                <div class="team__item">
+
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+
                     <?php
                     $loop = CFS()->get('team_card');
                     foreach($loop as $row) {
-                        ?>
-                        <img class="team__item-img" src="<?= $row['team_img'] ?>" alt="">
-                        <h3 class="team__item-title"><?= $row['team_name'] ?></h3>
-                        <p class="team__item-text"><?= $row['team_post'] ?></p>
-                        <div class="team__icon-box">   
-                            <a href="<?= $row['team_twitter']['url'] ?>" target="<?= $row['team_twitter']['target'] ?>"><i class="icon-twitter"></i></a>
-                            <a href="<?= $row['team_instagram']['url'] ?>" target="<?= $row['team_instagram']['target'] ?>"><i class="icon-instagram"></i></a>
-                            <a href="<?= $row['team_vk']['url'] ?>" target="<?= $row['team_vk']['target'] ?>"><i class="icon-vkontakte"></i></a>
-                            <a href="<?= $row['team_facebook']['url'] ?>" target="<?= $row['team_facebook']['target'] ?>"><i class="icon-facebook"></i></a>
-                        </div>
-                        <?php
-                    }
                     ?>
+                    <div class="swiper-slide">
+                        <div class="team__item">
+                            <img class="team__item-img" src="<?= $row['team_img'] ?>" alt="">
+                            <h3 class="team__item-title"><?= $row['team_name'] ?></h3>
+                            <p class="team__item-text"><?= $row['team_post'] ?></p>
+                            <div class="team__icon-box">   
+                                <?php
+                                    if(!empty($row['team_twitter']['url'])) {
+                                        ?>
+                                            <a href="<?= $row['team_twitter']['url'] ?>" target="<?= $row['team_twitter']['target'] ?>"><i class="icon-twitter"></i></a>
+                                        <?php 
+                                    }
+                                    if(!empty($row['team_instagram']['url'])) {
+                                        ?>
+                                            <a href="<?= $row['team_instagram']['url'] ?>" target="<?= $row['team_instagram']['target'] ?>"><i class="icon-instagram"></i></a>
+                                        <?php 
+                                    }
+                                    if(!empty($row['team_vk']['url'])) {
+                                        ?>
+                                            <a href="<?= $row['team_vk']['url'] ?>" target="<?= $row['team_vk']['target'] ?>"><i class="icon-vkontakte"></i></a>
+                                        <?php 
+                                    }
+                                    if(!empty($row['team_facebook']['url'])) {
+                                        ?>
+                                            <a href="<?= $row['team_facebook']['url'] ?>" target="<?= $row['team_facebook']['target'] ?>"><i class="icon-facebook"></i></a>
+                                        <?php 
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                            <?php
+                        }
+                        ?>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
+
             </div>
         </div>
     </div>
+
     <div class="provide" id="provide">
         <div class="container">
             <div class="block__head inverse">
-                <h2 class="block__title">We provide you everything</h2>
-                <p class="block__text">Maybe not everything, but we provide you some stuff.</p>
+                <h2 class="block__title"><?= CFS()->get('provide_title'); ?></h2>
+                <p class="block__text"><?= CFS()->get('provide_text'); ?></p>
             </div>
             <div class="provide__inner">
-                <div class="provide__item">
-                    <i class="icon-chart-line"></i>
-                    <h3 class="provide__item-title">Some Analytics</h3>
-                    <p class="provide__item-text">Aenean nisi lectus, convallis non lorem sit amet, rhoncus malesuada justo</p>
+
+            <?php
+                $loop = CFS()->get('provide_card');
+                foreach($loop as $row) {
+                    ?>
+                    <div class="provide__item">
+                        <img src="<?= $row['provide_card_img'] ?>" alt="">
+                        <h3 class="provide__item-title"><?= $row['provide_card_title'] ?></h3>
+                        <p class="provide__item-text"><?= $row['provide_card_text'] ?></p>
                 </div>
-                <div class="provide__item">
-                    <i class="icon-heart"></i>
-                    <h3 class="provide__item-title">We provide you love</h3>
-                    <p class="provide__item-text">Aenean nisi lectus, convallis non lorem sit amet, rhoncus malesuada justo</p>
-                </div>
-                <div class="provide__item">
-                    <i class="icon-upload-cloud-outline"></i>
-                    <h3 class="provide__item-title">And Some Cloud</h3>
-                    <p class="provide__item-text">Aenean nisi lectus, convallis non lorem sit amet, rhoncus malesuada justo</p>
-                </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div> 
     <div class="contact" id="contact">
         <div class="container">
             <div class="block__head">
-                <h2 class="block__title">Contac Us</h2>
-                <p class="block__text">We know what we need to do</p>
+                <h2 class="block__title"><?= CFS()->get('footer_title'); ?></h2>
+                <p class="block__text"><?= CFS()->get('footer_text'); ?></p>
             </div>
             <div class="contact__inner">
                 <div class="contact__icon-box">
                     <div class="contact__item">
                         <i class="icon-phone"></i>
-                        <div class="contact__text"><a href="tel:555222333">555-222-333</a></div>
+                        <div class="contact__text"><a href="tel:<?= CFS()->get('footer_phone'); ?>"><?= CFS()->get('footer_phone'); ?></a></div>
                     </div>
                     <div class="contact__item">
                         <i class="icon-location"></i> 
-                        <div class="contact__text"><a href="https://goo.gl/maps/ot9BCyYtQbSXoJYRA" target="_blank">Here is some address</a></div>
+                        <div class="contact__text">
+                        <?php
+                            if(!empty(CFS()->get('footer_address')['url'])) {
+                                ?>
+                                    <a href="<?= CFS()->get('footer_address')['url'] ?>" 
+                                    target="<?= CFS()->get('footer_address')['target'] ?>">
+                                    <?= CFS()->get('footer_address')['text'] ?>
+                                    </a>
+                                <?php 
+                            }
+                            ?>
+                        </div>
                     </div>
                     <div class="contact__item">
-                        <i class="icon-mail-alt"></i>
-                        <div class="contact__text"><a href="mailto:somemail@hotmail.com">somemail@hotmail.com</a></div>
+                        <i class="icon-mail"></i>
+                        <div class="contact__text"><a href="mailto:<?= CFS()->get('footer_email'); ?>"><?= CFS()->get('footer_email'); ?></a></div>
                     </div>
                 </div>
-                <form action="" class="contact__form">
-                    <input class="contact__name" type="text" placeholder="Full Name">
-                    <input class="contact__email" type="email" placeholder="Email">
-                    <input class="contact__number" type="number" placeholder="Number">
-                    <textarea class="contact__textarea" placeholder="Write your Message here..."></textarea>
-                    <input type="submit" class="contact__button" value="Submit">
-                </form>
+                <?php the_content() ?>
             </div>
         </div>
     </div>
